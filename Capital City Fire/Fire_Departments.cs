@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Capital_City_Fire
@@ -58,6 +59,35 @@ namespace Capital_City_Fire
             dataGridView1.ReadOnly = true;
             save_button.Enabled = false;
             new_button.Enabled = true;
+        }
+
+        private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            string _phoneRegex = @"^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$";
+            string headerText =
+                dataGridView1.Columns[e.ColumnIndex].HeaderText;
+
+            if (headerText.Equals("Phone Number"))
+            {
+                DataGridViewCell cell = dataGridView1[e.ColumnIndex, e.RowIndex];
+
+                if (e.FormattedValue != null && !Regex.Match(e.FormattedValue.ToString().Trim().ToUpper(),
+                    _phoneRegex).Success)
+                {
+                    if (e.FormattedValue.ToString().Trim().Equals(""))
+                    {
+                        cell.ErrorText = string.Empty;
+                        return;
+                    }
+                    cell.ErrorText = "Invalid Phone Number";
+                    MessageBox.Show("Invalid Phone Number Entry!", "Invalid Entry", MessageBoxButtons.OK);
+                    e.Cancel = true;
+                }
+                else
+                {
+                    cell.ErrorText = string.Empty;
+                }
+            }
         }
     }
 }

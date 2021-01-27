@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Capital_City_Fire
@@ -59,56 +60,70 @@ namespace Capital_City_Fire
             new_button.Enabled = true;
         }
 
-        private void dataGridView1_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
+        private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-           
-            DataGridViewCell nameCell = row.Cells[dataGridView1.Columns["Company"].Index];
-            DataGridViewCell phoneCell = row.Cells[dataGridView1.Columns["Phone Number"].Index];
-            DataGridViewCell emailCell = row.Cells[dataGridView1.Columns["Email"].Index];
+            string _phoneRegex = @"^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$";
+            string headerText =
+                dataGridView1.Columns[e.ColumnIndex].HeaderText;
 
-            e.Cancel = !(IsNameGood(nameCell) && IsPhoneGood(phoneCell) && IsEmailGood(emailCell));
+            if (headerText.Equals("Phone Number"))
+            {
+                DataGridViewCell cell = dataGridView1[e.ColumnIndex, e.RowIndex];
+                
+                if (e.FormattedValue != null && !Regex.Match(e.FormattedValue.ToString().Trim().ToUpper(), 
+                    _phoneRegex).Success)
+                {
+                    if (e.FormattedValue.ToString().Trim().Equals(""))
+                    {
+                        cell.ErrorText = string.Empty;
+                        return;
+                    }
+                    cell.ErrorText = "Invalid Phone Number";
+                    MessageBox.Show("Invalid Phone Number Entry!", "Invalid Entry", MessageBoxButtons.OK);
+                    e.Cancel = true;
+                }
+                else
+                {
+                    cell.ErrorText = string.Empty;
+                }
+            }
+            else if (headerText.Equals("Email"))
+            {
+                DataGridViewCell cell = dataGridView1[e.ColumnIndex, e.RowIndex];
+
+                if (e.FormattedValue != null && !IsValidEmail(e.FormattedValue.ToString().Trim()))
+                {
+                    if (e.FormattedValue.ToString().Trim().Equals(""))
+                    {
+                        cell.ErrorText = string.Empty;
+                        return;
+                    }
+                    cell.ErrorText = "Invalid Email";
+                    MessageBox.Show("Invalid Email Entry!", "Invalid Entry", MessageBoxButtons.OK);
+                    e.Cancel = true;
+                }
+                else
+                {
+                    cell.ErrorText = string.Empty;
+                }
+            }
+
+
+
         }
 
-        private bool IsNameGood(DataGridViewCell cell)
+        bool IsValidEmail(string email)
         {
-            if ((cell.Value == null) || (cell.Value.ToString().Length == 0))
+            try
             {
-                cell.ErrorText = "Please enter a company name";
-                dataGridView1.Rows[cell.RowIndex].ErrorText = "Please enter a company name";
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
                 return false;
             }
-            return true;
         }
 
-        private bool IsPhoneGood(DataGridViewCell cell)
-        {
-            Int32 cellValueAsInt;
-            if ((cell.Value == null) || (cell.Value.ToString().Length == 0))
-            {
-                cell.ErrorText = "Please enter a phone number";
-                dataGridView1.Rows[cell.RowIndex].ErrorText = "Please enter a phone number";
-                return false;
-            }
-            else if (!Int32.TryParse(cell.Value.ToString(), out cellValueAsInt))
-            {
-                cell.ErrorText = "A phone number must be all digits";
-                dataGridView1.Rows[cell.RowIndex].ErrorText =
-                    "A phone number must be all digits";
-                return false;
-            }
-            else if (cell.Value.ToString().Length != 10)
-            {
-                cell.ErrorText = "A phone number must be 10 digits";
-                dataGridView1.Rows[cell.RowIndex].ErrorText =
-                    "A phone number must be 10 digits";
-                return false;
-            }
-            return true;
-        }
-        private bool IsEmailGood(DataGridViewCell cell)
-        {
-            return true;
-        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Capital_City_Fire
@@ -64,6 +65,68 @@ namespace Capital_City_Fire
             int techID = (int)dataGridView1.SelectedRows[0].Cells[0].Value;
             var techReports = new TechReports(techID);
             techReports.Show();
+        }
+
+        private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            string _phoneRegex = @"^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$";
+            string headerText =
+                dataGridView1.Columns[e.ColumnIndex].HeaderText;
+
+            if (headerText.Equals("Phone Number"))
+            {
+                DataGridViewCell cell = dataGridView1[e.ColumnIndex, e.RowIndex];
+
+                if (e.FormattedValue != null && !Regex.Match(e.FormattedValue.ToString().Trim().ToUpper(),
+                    _phoneRegex).Success)
+                {
+                    if (e.FormattedValue.ToString().Trim().Equals(""))
+                    {
+                        cell.ErrorText = string.Empty;
+                        return;
+                    }
+                    cell.ErrorText = "Invalid Phone Number";
+                    MessageBox.Show("Invalid Phone Number Entry!", "Invalid Entry", MessageBoxButtons.OK);
+                    e.Cancel = true;
+                }
+                else
+                {
+                    cell.ErrorText = string.Empty;
+                }
+            }
+            else if (headerText.Equals("Email"))
+            {
+                DataGridViewCell cell = dataGridView1[e.ColumnIndex, e.RowIndex];
+
+                if (e.FormattedValue != null && !IsValidEmail(e.FormattedValue.ToString().Trim()))
+                {
+                    if (e.FormattedValue.ToString().Trim().Equals(""))
+                    {
+                        cell.ErrorText = string.Empty;
+                        return;
+                    }
+                    cell.ErrorText = "Invalid Email";
+                    MessageBox.Show("Invalid Email Entry!", "Invalid Entry", MessageBoxButtons.OK);
+                    e.Cancel = true;
+                }
+                else
+                {
+                    cell.ErrorText = string.Empty;
+                }
+            }
+        }
+
+        bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
