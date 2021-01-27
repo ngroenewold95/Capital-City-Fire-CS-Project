@@ -1,0 +1,476 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{00A43A04-3BD8-4621-A6F1-979546B1D61C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Capital_City_Fire</RootNamespace>
+    <AssemblyName>Capital City Fire</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.3.0, Culture=neutral, PublicKeyToken=0e99375e54769942" />
+    <Reference Include="Google.Protobuf, Version=3.11.4.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604" />
+    <Reference Include="K4os.Compression.LZ4.Streams, Version=1.1.11.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d" />
+    <Reference Include="MySql.Data, Version=8.0.22.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySqlConnector, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d33d3e53aa5f8c92, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySqlConnector.1.2.0\lib\net471\MySqlConnector.dll</HintPath>
+    </Reference>
+    <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106" />
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.5.0.0\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Data.SqlClient, Version=4.6.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SqlClient.4.8.2\lib\net461\System.Data.SqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.0\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.5.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Permissions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Permissions.5.0.0\lib\net461\System.Security.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.3.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Ubiety.Dns.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="Zstandard.Net, Version=1.1.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Buildings_DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Buildings_DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CapcityDataSet.cs">
+      <DependentUpon>CapcityDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CapcityDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CapcityDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Companies.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Companies.Designer.cs">
+      <DependentUpon>Companies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Companies_DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Companies_DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Device_Types_DataSet.cs">
+      <DependentUpon>Device_Types_DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Device_Types_DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Device_Types_DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ELU_Types_DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ELU_Types_DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EXT_Types_DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EXT_Types_DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Fire_Departments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fire_Departments.Designer.cs">
+      <DependentUpon>Fire_Departments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fire_Departments_DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Fire_Departments_DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Device_Types.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Device_Types.Designer.cs">
+      <DependentUpon>Device_Types.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ELU_Types.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ELU_Types.Designer.cs">
+      <DependentUpon>ELU_Types.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EXT_Types.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EXT_Types.Designer.cs">
+      <DependentUpon>EXT_Types.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Buildings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Buildings.Designer.cs">
+      <DependentUpon>Buildings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddNewBuilding.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddNewBuilding.Designer.cs">
+      <DependentUpon>AddNewBuilding.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddDevice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddDevice.Designer.cs">
+      <DependentUpon>AddDevice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddElu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddElu.Designer.cs">
+      <DependentUpon>AddElu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddExt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddExt.Designer.cs">
+      <DependentUpon>AddExt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewExts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewExts.Designer.cs">
+      <DependentUpon>ViewExts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewElus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewElus.Designer.cs">
+      <DependentUpon>ViewElus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewDevices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewDevices.Designer.cs">
+      <DependentUpon>ViewDevices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TechReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TechReports.Designer.cs">
+      <DependentUpon>TechReports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewReport.Designer.cs">
+      <DependentUpon>ViewReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewBuildings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewBuildings.Designer.cs">
+      <DependentUpon>ViewBuildings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BuildingReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuildingReports.Designer.cs">
+      <DependentUpon>BuildingReports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewReport.Designer.cs">
+      <DependentUpon>NewReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports.Designer.cs">
+      <DependentUpon>Reports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Technicians.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Technicians.Designer.cs">
+      <DependentUpon>Technicians.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Splash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Splash.Designer.cs">
+      <DependentUpon>Splash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Technicians_DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Technicians_DataSet.xsd</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AddDevice.resx">
+      <DependentUpon>AddDevice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddElu.resx">
+      <DependentUpon>AddElu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddExt.resx">
+      <DependentUpon>AddExt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddNewBuilding.resx">
+      <DependentUpon>AddNewBuilding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BuildingReports.resx">
+      <DependentUpon>BuildingReports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Buildings.resx">
+      <DependentUpon>Buildings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewDevices.resx">
+      <DependentUpon>ViewDevices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TechReports.resx">
+      <DependentUpon>TechReports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewBuildings.resx">
+      <DependentUpon>ViewBuildings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Companies.resx">
+      <DependentUpon>Companies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Device_Types.resx">
+      <DependentUpon>Device_Types.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ELU_Types.resx">
+      <DependentUpon>ELU_Types.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EXT_Types.resx">
+      <DependentUpon>EXT_Types.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fire_Departments.resx">
+      <DependentUpon>Fire_Departments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewReport.resx">
+      <DependentUpon>NewReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Reports.resx">
+      <DependentUpon>Reports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Splash.resx">
+      <DependentUpon>Splash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Technicians.resx">
+      <DependentUpon>Technicians.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewElus.resx">
+      <DependentUpon>ViewElus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewExts.resx">
+      <DependentUpon>ViewExts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewReport.resx">
+      <DependentUpon>ViewReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Buildings_DataSet.xsc">
+      <DependentUpon>Buildings_DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Buildings_DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Buildings_DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Buildings_DataSet.xss">
+      <DependentUpon>Buildings_DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CapcityDataSet.xsc">
+      <DependentUpon>CapcityDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CapcityDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CapcityDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CapcityDataSet.xss">
+      <DependentUpon>CapcityDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Companies_DataSet.xsc">
+      <DependentUpon>Companies_DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Companies_DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Companies_DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Companies_DataSet.xss">
+      <DependentUpon>Companies_DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Device_Types_DataSet.xsc">
+      <DependentUpon>Device_Types_DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Device_Types_DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Device_Types_DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Device_Types_DataSet.xss">
+      <DependentUpon>Device_Types_DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ELU_Types_DataSet.xsc">
+      <DependentUpon>ELU_Types_DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ELU_Types_DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ELU_Types_DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ELU_Types_DataSet.xss">
+      <DependentUpon>ELU_Types_DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EXT_Types_DataSet.xsc">
+      <DependentUpon>EXT_Types_DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EXT_Types_DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EXT_Types_DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="EXT_Types_DataSet.xss">
+      <DependentUpon>EXT_Types_DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Fire_Departments_DataSet.xsc">
+      <DependentUpon>Fire_Departments_DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Fire_Departments_DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Fire_Departments_DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Fire_Departments_DataSet.xss">
+      <DependentUpon>Fire_Departments_DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Technicians_DataSet.xsc">
+      <DependentUpon>Technicians_DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Technicians_DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Technicians_DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Technicians_DataSet.xss">
+      <DependentUpon>Technicians_DataSet.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
